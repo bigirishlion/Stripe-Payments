@@ -71,7 +71,7 @@ if ($_POST) {
     $apiKey = "11111";
     $listId = "4af95dc7a1";
 
-    /*$groupings = array(
+    $groupings = array(
       'name'=> 'Cafe Member',
       'groups'=> $_POST['cafe_member'],
     );
@@ -81,12 +81,11 @@ if ($_POST) {
       'LNAME' => ucwords(trim($_POST['last_name'])),
       'address1'=>array('addr1'=>$_POST['street'], 'city'=>$_POST['city'], 'state'=>$_POST['state'], 'zip'=>$_POST['zip']),
       'GROUPINGS' => array($groupings),
-    );*/
+    );
 
     $send_data=array(
-      "email_address"=>$_POST['email'],
+      "email"=>$_POST['email'],
       'merge_vars'=>$merge_vars,
-      'email'=>array($email_array),
       'apikey'=>$apiKey, // Your Key
       'id'=>$listId, // Your proper List ID
       'double_optin'=>false,
@@ -98,16 +97,18 @@ if ($_POST) {
 
     $payload=json_encode($send_data);
 
-    $submit_url="https://us11.api.mailchimp.com/3.0/lists/" . $listId . "/members";
+    $submit_url="https://us11.api.mailchimp.com/2.0/lists/subscribe.json";
 
     $ch=curl_init();
     curl_setopt($ch,CURLOPT_URL,$submit_url);
-    curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
     curl_setopt($ch,CURLOPT_RETURNTRANSFER,TRUE);
     curl_setopt($ch,CURLOPT_POST,TRUE);
     curl_setopt($ch,CURLOPT_POSTFIELDS,urlencode($payload));
-    //curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
     $result=curl_exec($ch);
+    if(curl_errno($ch)){
+      echo 'error:' . curl_error($ch);
+    }
     curl_close($ch);
     $mcdata=json_decode($result);
 
