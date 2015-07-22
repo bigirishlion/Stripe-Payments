@@ -286,7 +286,7 @@
               <div class="form-group">
                 <label class="col-sm-4 control-label" for="textinput">First Name</label>
                 <div class="col-sm-6">
-                  <input type="text" name="first_name" placeholder="First Name" class="f-name form-control">
+                  <input type="text" value="Aaron" name="first_name" placeholder="First Name" class="f-name form-control">
                 </div>
               </div>
               
@@ -294,7 +294,7 @@
               <div class="form-group">
                 <label class="col-sm-4 control-label" for="textinput">Last Name</label>
                 <div class="col-sm-6">
-                  <input type="text" name="last_name" placeholder="Last Name" class="l-name form-control">
+                  <input type="text" value="M" name="last_name" placeholder="Last Name" class="l-name form-control">
                 </div>
               </div>
 
@@ -302,7 +302,7 @@
               <div class="form-group">
                 <label class="col-sm-4 control-label" for="textinput">Address</label>
                 <div class="col-sm-6">
-                  <input type="text" name="street" placeholder="Street" class="address form-control">
+                  <input type="text" value="123 4th St" name="street" placeholder="Street" class="address form-control">
                 </div>
               </div>
               
@@ -310,7 +310,7 @@
               <div class="form-group">
                 <label class="col-sm-4 control-label" for="textinput">City</label>
                 <div class="col-sm-6">
-                  <input type="text" name="city" placeholder="City" class="city form-control">
+                  <input type="text" value="Bend" name="city" placeholder="City" class="city form-control">
                 </div>
               </div>
               
@@ -318,7 +318,7 @@
               <div class="form-group">
                 <label class="col-sm-4 control-label" for="textinput">State</label>
                 <div class="col-sm-6">
-                  <input type="text" name="state" maxlength="65" placeholder="State" class="state form-control">
+                  <input type="text" value="OR" name="state" maxlength="65" placeholder="State" class="state form-control">
                 </div>
               </div>
               
@@ -326,7 +326,7 @@
               <div class="form-group">
                 <label class="col-sm-4 control-label" for="textinput">Postal Code</label>
                 <div class="col-sm-6">
-                  <input type="text" name="zip" maxlength="9" placeholder="Postal Code" class="zip form-control">
+                  <input type="text" value="97701" name="zip" maxlength="9" placeholder="Postal Code" class="zip form-control">
                 </div>
               </div>
               
@@ -343,7 +343,7 @@
               <div class="form-group">
                 <label class="col-sm-4 control-label" for="textinput">Email</label>
                 <div class="col-sm-6">
-                  <input type="text" name="email" maxlength="65" placeholder="Email" class="email form-control">
+                  <input type="text" value="fred@gmail.com" name="email" maxlength="65" placeholder="Email" class="email form-control">
                 </div>
               </div>
               </fieldset>
@@ -354,7 +354,7 @@
                 <div class="form-group">
                   <label class="col-sm-4 control-label"  for="textinput">Card Holder's Name</label>
                   <div class="col-sm-6">
-                    <input type="text" name="cardholdername" maxlength="70" placeholder="Card Holder Name" class="card-holder-name form-control">
+                    <input type="text" value="Aaron M" name="cardholdername" maxlength="70" placeholder="Card Holder Name" class="card-holder-name form-control">
                   </div>
                 </div>
                 
@@ -362,7 +362,7 @@
                 <div class="form-group">
                   <label class="col-sm-4 control-label" for="textinput">Card Number</label>
                   <div class="col-sm-6">
-                    <input type="text" id="cardnumber" maxlength="19" placeholder="Card Number" class="card-number form-control">
+                    <input type="text" value="4000056655665556" id="cardnumber" maxlength="19" placeholder="Card Number" class="card-number form-control">
                   </div>
                 </div>
                 
@@ -372,14 +372,14 @@
                   <div class="col-sm-6">
                     <div class="form-inline">
                       <select name="select2" data-stripe="exp-month" class="card-expiry-month stripe-sensitive required form-control">
-                        <option value="01" selected="selected">01</option>
+                        <option value="01">01</option>
                         <option value="02">02</option>
                         <option value="03">03</option>
                         <option value="04">04</option>
                         <option value="05">05</option>
                         <option value="06">06</option>
                         <option value="07">07</option>
-                        <option value="08">08</option>
+                        <option value="08" selected="selected">08</option>
                         <option value="09">09</option>
                         <option value="10">10</option>
                         <option value="11">11</option>
@@ -396,7 +396,7 @@
                 <div class="form-group">
                   <label class="col-sm-4 control-label" for="textinput">CVV/CVV2</label>
                   <div class="col-sm-3">
-                    <input type="text" id="cvv" placeholder="CVV" maxlength="4" class="card-cvc form-control">
+                    <input type="text" value="123" id="cvv" placeholder="CVV" maxlength="4" class="card-cvc form-control">
                   </div>
                 </div>
                 
