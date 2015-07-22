@@ -343,7 +343,7 @@
               <div class="form-group">
                 <label class="col-sm-4 control-label" for="textinput">Email</label>
                 <div class="col-sm-6">
-                  <input type="text" value="fred@gmail.com" name="email" maxlength="65" placeholder="Email" class="email form-control">
+                  <input type="text" value="jesse@gmail.com" name="email" maxlength="65" placeholder="Email" class="email form-control">
                 </div>
               </div>
               </fieldset>

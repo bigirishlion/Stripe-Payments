@@ -89,9 +89,15 @@ if ($_POST) {
       "email_address"=>$_POST['email'],
       'status'=>'subscribed',
       'merge_fields'=>$merge_vars,
+      /*'interests'=>array(
+        'ece109f01a'=>true,
+        'd52ac58e98'=>false,
+        '559bf3d3bf'=>false,
+        '4594561e87'=>false
+        ),*/
       'id'=>$listId, // Your proper List ID
       'double_optin'=>false,
-      'interests'=>array('name'=>'Cafe Member'),
+      //'interests'=>array('name'=>'Cafe Member'),
       'update_existing'=>true,
       'replace_interests'=>true,
       'send_welcome'=>false,
