@@ -2,7 +2,6 @@
   <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
   <script type="text/Javascript" src="./subscribe/js/bootstrap-formhelpers-min.js"></script>
   <script type="text/javascript" src="./subscribe/js/bootstrapValidator-min.js"></script>
-  <!-- <script type="text/javascript" src="./subscribe/js/payment-form-init.js"></script> -->
 
     <div class="modal fade" id="stripeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
@@ -12,23 +11,6 @@
           <h3 class="modal-title" id="myModalLabel">Secure Form</h3>
         </div>
         <div class="modal-body">
-
-          <style type="text/css">
-            <?php
-              /*$icon_font_path = "./fonts/";
-              $icon_font_name = "glyphicons-halflings-regular";
-              $gicon = $icon_font_path . $icon_font_name; 
-
-              @font-face {
-                font-family: 'Glyphicons Halflings';
-                src: "url('<?php echo $gicon ?>.eot')";
-                src: "url('<?php echo $gicon ?>.eot?#iefix') format('embedded-opentype')",
-                     "url('<?php echo $gicon ?>.woff') format('woff')",
-                     "url('<?php echo $gicon ?>.ttf') format('truetype')",
-                     "url('<?php echo $gicon ?>.svg#@{icon-font-svg-id}') format('svg')";
-              }*/
-            ?>
-          </style>
 
           <script type="text/javascript">
           // on document ready
@@ -281,12 +263,13 @@
               <legend style="text-align: center; border: none;">Billing Details</legend>
 
               <input type="hidden" id="cafe_member" name="cafe_member" value="">
+-             <input type="hidden" id="list_id" name="list_id" value="">
               
               <!-- First Name -->
               <div class="form-group">
                 <label class="col-sm-4 control-label" for="textinput">First Name</label>
                 <div class="col-sm-6">
-                  <input type="text" value="Aaron" name="first_name" placeholder="First Name" class="f-name form-control">
+                  <input type="text" value="Tommy" name="first_name" placeholder="First Name" class="f-name form-control">
                 </div>
               </div>
               
@@ -294,7 +277,7 @@
               <div class="form-group">
                 <label class="col-sm-4 control-label" for="textinput">Last Name</label>
                 <div class="col-sm-6">
-                  <input type="text" value="M" name="last_name" placeholder="Last Name" class="l-name form-control">
+                  <input type="text" value="Tester" name="last_name" placeholder="Last Name" class="l-name form-control">
                 </div>
               </div>
 
@@ -354,7 +337,7 @@
                 <div class="form-group">
                   <label class="col-sm-4 control-label"  for="textinput">Card Holder's Name</label>
                   <div class="col-sm-6">
-                    <input type="text" value="Aaron M" name="cardholdername" maxlength="70" placeholder="Card Holder Name" class="card-holder-name form-control">
+                    <input type="text" value="Tom Tester" name="cardholdername" maxlength="70" placeholder="Card Holder Name" class="card-holder-name form-control">
                   </div>
                 </div>
                 
@@ -426,6 +409,8 @@
         var button = $(event.relatedTarget);
         var cafe_member = button.data('cafe-member');
         var is_donate = button.data('is-donate');
-        $('#cafe_member').val(cafe_member);
+-        var list_id = button.data('list-id');
+         $('#cafe_member').val(cafe_member);
+-        $('#list_id').val(list_id);
     });
   </script>

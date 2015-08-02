@@ -2,102 +2,52 @@
 require 'lib/Stripe.php';
  
 if ($_POST) {
-  Stripe::setApiKey("xxxxxxxxx");
+  Stripe::setApiKey("xxxxxxxxxxxx");
   $error = '';
   $success = '';
 
   try {
-    /*if (empty($_POST['street']) || empty($_POST['city']) || empty($_POST['zip']) || empty($_POST['cafe_member']))
+    if (empty($_POST['street']) || empty($_POST['city']) || empty($_POST['zip']) || empty($_POST['cafe_member']))
       throw new Exception("Fill out all required fields.");
     if (!isset($_POST['stripeToken']))
       throw new Exception("The Stripe Token was not generated correctly");
 
+    $subscription = true;
 
-    if($subscription = true){
-    // Create customer and assign customer to plan
+    if($subscription){
+        // Create customer and assign customer to plan
         $customer = Stripe_Customer::create(array("source" => $_POST['stripeToken'],
-            //"plan" => "Plan1",
-            "plan"=>"testplan",
+            "plan" => "Plan1",
+            //"plan"=>"testplan",
             "description" => "Subscription for ". $_POST['cafe_member'],
             "email" => $_POST['email']
         ));
     } else {
         // Donate
         $charge = Stripe_Charge::create(array(
-            "amount" => 99,
+            "amount" => $_POST['donation_amount'],
             "currency" => "usd",
             "source" => $_POST['stripeToken'],
             "description" => $_POST['email']."Subsribed to ".$_POST['cafe_member']
         ));
-    }*/
-
-    // Send information to salesforce
-    //http://sim.plified.com/2009/02/13/pushing-leads-to-salesforce-with-php/
-    /*$url = 'https://www.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8';
-    $fields = array(
-      'last_name'=>urlencode($_POST['first_name']),
-      'first_name'=>urlencode($_POST['last_name']),
-      'email'=>urlencode($_POST['email']),
-      'street'=>urlencode($_POST['street']),
-      'city'=>urlencode($_POST['city']),
-      'state'=>urlencode($_POST['state']),
-      'zip'=>urlencode($_POST['zip']),
-      'oid' => '11111111', // insert with your id
-      '11111111'=>urlencode($_POST['cafe_member']),
-      //'retURL' => urlencode('http://lafleurcafe.aaron.local/subscribe/thanks/'),
-      //'debug' => '1',
-      //'debugEmail' => urlencode("aaron@guavajellyco.com"),
-    );
-    foreach($fields as $key=>$value) { $query_string .= $key.'='.$value.'&'; }
-    rtrim($query_string,'&');
-    // Test cUrl connection
-    if (!function_exists('curl_init')){
-      die('Sorry cURL is not installed!');
     }
-    //Open cURL connection
-    $ch = curl_init();
-    //Set the url, number of POST vars, POST data
-    curl_setopt($ch, CURLOPT_URL, $url);
-    curl_setopt($ch, CURLOPT_POST, count($fields));
-    curl_setopt($ch, CURLOPT_POSTFIELDS, $query_string);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, FALSE);
-    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, TRUE);
-    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
-     $result = curl_exec($ch);
-    //close cURL connection
-    curl_close($ch);*/
 
     // Send information to MailChimp
-    $listId = "4af95dc7a1";
+    $listId = $_POST['list_id'];
     $username = "anything";
-    $password = "11111";
-
-    $groupings = array(
-      'name'=> 'Cafe Member',
-      'groups'=> $_POST['cafe_member'],
-    );
+    $password = "xxxxxxxxxxxx";
 
     $merge_vars = array(
       'FNAME' => ucwords(trim($_POST['first_name'])),
       'LNAME' => ucwords(trim($_POST['last_name'])),
-      //'address1'=>array('addr1'=>$_POST['street'], 'city'=>$_POST['city'], 'state'=>$_POST['state'], 'zip'=>$_POST['zip']),
-      //'GROUPINGS' => array($groupings),
-      'CAFEMEMBER'=>$_POST['cafe_member'],
     );
 
-    $send_data=array(
+    $send_data=array(      
       "email_address"=>$_POST['email'],
       'status'=>'subscribed',
       'merge_fields'=>$merge_vars,
-      /*'interests'=>array(
-        'ece109f01a'=>true,
-        'd52ac58e98'=>false,
-        '559bf3d3bf'=>false,
-        '4594561e87'=>false
-        ),*/
       'id'=>$listId, // Your proper List ID
       'double_optin'=>false,
-      //'interests'=>array('name'=>'Cafe Member'),
       'update_existing'=>true,
       'replace_interests'=>true,
       'send_welcome'=>false,
@@ -106,8 +56,7 @@ if ($_POST) {
 
     $payload=json_encode($send_data);
 
-    $submit_url="https://us11.api.mailchimp.com/3.0/lists/4af95dc7a1/members/";
-    //$submit_url="https://us11.api.mailchimp.com/2.0/?method=listSubscribe";
+    $submit_url="https://us7.api.mailchimp.com/3.0/lists/" . $listId . "/members";
 
     $ch=curl_init();
     curl_setopt($ch, CURLOPT_USERPWD, $username . ":" . $password);
@@ -121,13 +70,8 @@ if ($_POST) {
       echo 'error:' . curl_error($ch);
     }
     curl_close($ch);
-    $mcdata=json_decode($result);
 
-    //if ($mcdata->error) echo "Mailchimp Error: ".$mcdata->error;
-    echo("JSON: " . $payload);
-    echo("Result = " . $result);
-
-    //echo '<div class="alert alert-success"><strong>Success!</strong> Your payment was successful.</div>';
+    echo '<div class="alert alert-success"><strong>Success!</strong> Your payment was successful.</div>';
   }
   catch (Exception $e) {
     echo '<div class="alert alert-danger"><strong>Error!</strong> '.$e->getMessage().'</div>';

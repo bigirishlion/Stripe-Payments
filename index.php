@@ -7,7 +7,7 @@
       <div class="col-xs-3 ">
         <div class="row">
           <div class="col-sm-12">
-            <button class="btn btn-default btn-block" data-toggle="modal" data-target="#stripeModal" data-is-donate="false" data-cafe-member="Abby Morse">Subscribe</button>
+            <button class="btn btn-default btn-block" data-toggle="modal" data-target="#stripeModal" data-is-donate="false" data-list-id="00a570c259" data-cafe-member="Abby Morse">Subscribe</button>
           </div>
           <!-- <div class="col-sm-6">
             <button class="btn btn-default btn-block" data-toggle="modal" data-target="#stripeModal" data-is-donate="true" data-cafe-member="Abby Morse">Donate</button>
@@ -22,7 +22,6 @@
 
       </div>
 </div>
-
           
 <?php 
   // Load the Strip form Code
