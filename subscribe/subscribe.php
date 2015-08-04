@@ -263,7 +263,7 @@
               <legend style="text-align: center; border: none;">Billing Details</legend>
 
               <input type="hidden" id="cafe_member" name="cafe_member" value="">
--             <input type="hidden" id="list_id" name="list_id" value="">
+              <input type="hidden" id="list_id" name="list_id" value="">
               
               <!-- First Name -->
               <div class="form-group">
@@ -409,8 +409,8 @@
         var button = $(event.relatedTarget);
         var cafe_member = button.data('cafe-member');
         var is_donate = button.data('is-donate');
--        var list_id = button.data('list-id');
-         $('#cafe_member').val(cafe_member);
--        $('#list_id').val(list_id);
+        var list_id = button.data('list-id');
+        $('#cafe_member').val(cafe_member);
+        $('#list_id').val(list_id);
     });
   </script>
