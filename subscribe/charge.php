@@ -47,16 +47,16 @@ if ($_POST) {
       'status'=>'subscribed',
       'merge_fields'=>$merge_vars,
       'id'=>$listId, // Your proper List ID
-      'double_optin'=>false,
+      'double_optin'=>true,
       'update_existing'=>true,
       'replace_interests'=>true,
-      'send_welcome'=>false,
+      'send_welcome'=>true,
       'email_type'=>"html",
     );
 
     $payload=json_encode($send_data);
 
-    $submit_url="https://us7.api.mailchimp.com/3.0/lists/" . $listId . "/members";
+    $submit_url="https://us11.api.mailchimp.com/3.0/lists/" . $listId . "/members";
 
     $ch=curl_init();
     curl_setopt($ch, CURLOPT_USERPWD, $username . ":" . $password);
@@ -70,6 +70,22 @@ if ($_POST) {
       echo 'error:' . curl_error($ch);
     }
     curl_close($ch);
+    echo $result;
+
+    //Send Email
+    $to = $_POST['email'];
+    $subject = "Subscription Confirmation For" . $_POST['cafe_member'];
+
+    $message = "<html><head><title>Thank You!</title></head><body><p>Email Confirmation for " . $_POST['cafe_member'] . " Subscription</p></body></html>    ";
+
+    // Always set content-type when sending HTML email
+    $headers = "MIME-Version: 1.0" . "\r\n";
+    $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+
+    // More headers
+    $headers .= 'From: <webmaster@example.com>' . "\r\n";
+
+    mail($to,$subject,$message,$headers);
 
     echo '<div class="alert alert-success"><strong>Success!</strong> Your payment was successful.</div>';
   }
