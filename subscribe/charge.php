@@ -72,17 +72,14 @@ if ($_POST) {
     curl_close($ch);
     echo $result;
 
-    //Send Email
+    //Send confirmation email
     $to = $_POST['email'];
     $subject = "Subscription Confirmation For" . $_POST['cafe_member'];
 
     $message = "<html><head><title>Thank You!</title></head><body><p>Email Confirmation for " . $_POST['cafe_member'] . " Subscription</p></body></html>    ";
 
-    // Always set content-type when sending HTML email
     $headers = "MIME-Version: 1.0" . "\r\n";
     $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-
-    // More headers
     $headers .= 'From: <webmaster@example.com>' . "\r\n";
 
     mail($to,$subject,$message,$headers);
